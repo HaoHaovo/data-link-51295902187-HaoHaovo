@@ -1,0 +1,28 @@
+﻿source_format,input_field,unified_field,mapping_rule,unit_conversion,null_strategy,evidence,verified
+OpenSky,target_id,track_id,转为六位小写十六进制并保留前导0,无,必需；非法则拒绝映射,source_field_definitions.md 与 unified_model.json,True
+OpenSky,latest_time,timestamp,正整数Unix秒直接映射,无,缺失或非正整数则time_valid=false,source_field_definitions.md 与 unified_model.json,True
+OpenSky,callsign,identity.callsign,去除首尾空格,无,空字符串转null,source_field_definitions.md 与 unified_model.json,True
+OpenSky,lat,position.lat,合法纬度直接映射,度到度,缺失或越界转null,source_field_definitions.md 与 unified_model.json,True
+OpenSky,lon,position.lon,合法经度直接映射,度到度,缺失或越界转null,source_field_definitions.md 与 unified_model.json,True
+OpenSky,altitude,position.alt,高度物理量直接映射,米到米,缺失转null,source_field_definitions.md 与 unified_model.json,True
+OpenSky,alt_type,position.alt_type,仅接受barometric/geometric,无,高度缺失时unknown,source_field_definitions.md 与 unified_model.json,True
+OpenSky,speed,motion.speed,地速物理量直接映射,m/s到m/s,缺失转null,source_field_definitions.md 与 unified_model.json,True
+OpenSky,heading,motion.heading,检查0<=heading<360后映射,度到度,缺失转null；越界转null,source_field_definitions.md 与 unified_model.json,True
+OpenSky,vertical_rate,motion.vertical_rate,垂直速度直接映射,m/s到m/s,缺失转null,source_field_definitions.md 与 unified_model.json,True
+OpenSky,on_ground,status.on_ground,规范化为布尔值,无,缺失按false并使message_valid=false,source_field_definitions.md 与 unified_model.json,True
+OpenSky,lat+lon,quality.position_valid,纬经均非空且合法时为true,无,任一缺失为false,source_field_definitions.md 与 unified_model.json,True
+OpenSky,time_source,quality.time_source,保留position_time或last_contact_fallback,无,缺失回退position_time,source_field_definitions.md 与 unified_model.json,True
+OpenSky,message_valid,quality.message_valid,仅表示源记录结构校验结果,无,缺失为false,source_field_definitions.md 与 unified_model.json,True
+TeachingLink,target_id,track_id,转为六位小写十六进制并保留前导0,无,必需；非法则拒绝映射,teaching_message_spec.md、partner_field_dictionary.csv 与有效位样例,True
+TeachingLink,timestamp/latest_time,timestamp,正整数Unix秒直接映射,无,缺失或非正整数则time_valid=false,teaching_message_spec.md、partner_field_dictionary.csv 与有效位样例,True
+TeachingLink,callsign+validity_flags.bit6,identity.callsign,bit6有效时去除补0,无,bit6=0时为null,teaching_message_spec.md、partner_field_dictionary.csv 与有效位样例,True
+TeachingLink,latitude_code+validity_flags.bit0,position.lat,有效时code/(2^22-1)*180-90,定点码到度,bit0=0时为null,teaching_message_spec.md、partner_field_dictionary.csv 与有效位样例,True
+TeachingLink,longitude_code+validity_flags.bit1,position.lon,有效时code/(2^22-1)*360-180,定点码到度,bit1=0时为null,teaching_message_spec.md、partner_field_dictionary.csv 与有效位样例,True
+TeachingLink,altitude_code+validity_flags.bit2,position.alt,有效时code-1000,定点码到米,bit2=0时为null,teaching_message_spec.md、partner_field_dictionary.csv 与有效位样例,True
+TeachingLink,status_flags.bit1,position.alt_type,高度有效时0=barometric、1=geometric,无,高度无效时unknown,teaching_message_spec.md、partner_field_dictionary.csv 与有效位样例,True
+TeachingLink,speed_code+validity_flags.bit3,motion.speed,有效时code*0.1,定点码到m/s,bit3=0时为null,teaching_message_spec.md、partner_field_dictionary.csv 与有效位样例,True
+TeachingLink,heading_code+validity_flags.bit4,motion.heading,有效时code*0.01并检查小于360,定点码到度,bit4=0时为null,teaching_message_spec.md、partner_field_dictionary.csv 与有效位样例,True
+TeachingLink,vertical_rate_code+validity_flags.bit5,motion.vertical_rate,有效时code*0.01-327.68,定点码到m/s,bit5=0时为null,teaching_message_spec.md、partner_field_dictionary.csv 与有效位样例,True
+TeachingLink,status_flags.bit0,status.on_ground,按bit0恢复布尔值,无,无,teaching_message_spec.md、partner_field_dictionary.csv 与有效位样例,True
+TeachingLink,status_flags.bit2,quality.time_source,0=position_time、1=last_contact_fallback,无,回退不等于时间无效,teaching_message_spec.md、partner_field_dictionary.csv 与有效位样例,True
+TeachingLink,message_valid,quality.message_valid,保留完整帧接收判据,无,缺失为false,teaching_message_spec.md、partner_field_dictionary.csv 与有效位样例,True

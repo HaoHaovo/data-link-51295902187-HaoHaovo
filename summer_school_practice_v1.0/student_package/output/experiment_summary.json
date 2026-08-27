@@ -1,0 +1,66 @@
+{
+  "parse": {
+    "input_records": 5,
+    "valid_records": 4
+  },
+  "m2": {
+    "input_records": 5,
+    "encoded_frames": 4,
+    "decoded_frames": 4,
+    "validation_events": 11,
+    "roundtrip_rows": 24
+  },
+  "m2_validation": {
+    "encoded_bytes": 164,
+    "frame_size": 41,
+    "all_generated_frames_decoded": true
+  },
+  "m3": {
+    "input_bytes": 369,
+    "complete_frames": 9,
+    "accepted_frames": 9,
+    "targets": 3,
+    "track_rows": 9,
+    "ignored_tail_bytes": 0
+  },
+  "m4": {
+    "candidate_rows": 8,
+    "verified_rows": 27,
+    "unified_rows": 6,
+    "opensky_rows": 3,
+    "teachinglink_rows": 3
+  },
+  "m5": {
+    "input_records": 6,
+    "alerts": 4,
+    "quality_rows": 6,
+    "alert_type_counts": {
+      "DATA_DELAYED": 1,
+      "DUPLICATE_RECORD": 1,
+      "HEADING_OUT_OF_RANGE": 1,
+      "POSITION_MISSING": 1
+    },
+    "severity_counts": {
+      "HIGH": 1,
+      "MEDIUM": 3
+    }
+  },
+  "export": {
+    "csv_row_counts": {
+      "decoded_partner_states.csv": 4,
+      "validation_log.csv": 11,
+      "roundtrip_report.csv": 24,
+      "decoded_multitime.csv": 9,
+      "track_table.csv": 9,
+      "current_situation.csv": 3,
+      "llm_mapping_candidate.csv": 8,
+      "verified_mapping_table.csv": 27,
+      "alert_log.csv": 4,
+      "quality_situation.csv": 6
+    },
+    "unified_objects": 6,
+    "sqlite_rows": 9,
+    "checkpoint_used": false,
+    "python_version": "3.14.7"
+  }
+}

@@ -1,0 +1,5 @@
+﻿alert_time,target_id,alert_type,severity,field,description
+1710000120,780def,POSITION_MISSING,HIGH,lat,位置字段缺失：lat为空。
+1710000120,000001,DATA_DELAYED,MEDIUM,timestamp,记录时间1710000000比批次时间1710000120滞后120秒。
+1710000120,780bbb,HEADING_OUT_OF_RANGE,MEDIUM,heading,heading=360，要求0<=heading<360。
+1710000120,780aaa,DUPLICATE_RECORD,MEDIUM,target_id+timestamp,"联合键target_id=780aaa, timestamp=1710000100出现2次。"

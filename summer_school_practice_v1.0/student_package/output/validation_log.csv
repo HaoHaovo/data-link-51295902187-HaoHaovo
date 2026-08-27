@@ -1,0 +1,12 @@
+﻿record_no,target_id,stage,field,problem_type,value,description
+3,780def,parse,callsign,MISSING,,callsign 为空。
+3,780def,parse,time_position,MISSING,,time_position 为空，使用 last_contact 回退。
+3,780def,parse,baro_altitude,MISSING,,baro_altitude 为空，使用 geo_altitude 回退。
+3,780def,parse,speed,MISSING,,speed 为空。
+4,780bad,parse,timestamp,REQUIRED_FIELD_MISSING,,time_position 与 last_contact 均为空，不能生成正常帧。
+5,780bee,parse,heading,OUT_OF_RANGE,360.0,"heading 超出允许范围 [0.0, 360.0)。"
+6,,decode,frame_length,LENGTH_ERROR,40,构造错误帧[长度错误]：实际帧长度必须为 41 字节。
+7,780abc,decode,magic,MAGIC_ERROR,0x4553,构造错误帧[头字段错误]：magic 必须为 0x4453。
+8,780abc,decode,checksum,CHECKSUM_ERROR,2679,构造错误帧[checksum错误]：checksum=2679，接收端重算值=2678。
+9,780abc,decode,validity_flags,RESERVED_BITS_ERROR,255,构造错误帧[保留位错误]：validity_flags 的 bit7 必须为 0。
+10,780abc,decode,latitude_code,FLAG_VALUE_INCONSISTENCY,2824872,构造错误帧[标志占位不一致]：latitude_code 的有效位为 0，但占位整数不是 0。
